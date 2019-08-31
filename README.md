@@ -1,6 +1,6 @@
 # star_battles
 
-When starts battle, I win. 
+When stars battle, I win. 
 
 ## Star Battles
 
