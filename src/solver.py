@@ -1,11 +1,9 @@
 from collections import defaultdict, deque
-from copy import deepcopy
 from functools import reduce
 from itertools import combinations
 from math import factorial as f
-from random import shuffle, randint
 
-# Params ..........
+#%% Params ..........
 board = '0011222222'
 board+= '0011202425'
 board+= '0001103425'
@@ -21,6 +19,7 @@ for i,v in enumerate(board):
     positions[int(v)].add(i)
 positions = dict(positions)   
 
+#%% Functions
 def print_board(board, stars, dash={}):
     print('-'*28)
     for i in range(100):
@@ -71,7 +70,8 @@ def next_branches(branch, a, b):
         if valid(branch|pair):
             branches.append((branch|pair, b))
     return branches
-    
+
+#%% Main solver: while loop breaks on solution
 nums = [num[0] for num in sorted([(k,len(v)) for k,v in pairs.items()], key=lambda it: it[1])]
 nums.append(None)
 order = dict([(nums[i], nums[i+1]) for i in range(10)])
