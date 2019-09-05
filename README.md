@@ -1,4 +1,4 @@
-# star_battle
+# starbattle
 
 When I battle stars, I win. 
 
