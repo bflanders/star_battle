@@ -1,8 +1,8 @@
-# star_battles
+# star_battle
 
 When I battle stars, I win. 
 
-## Star Battles
+## Star Battle
 
 This game is a constraint problem somewhat related to [Sudoku](https://github.com/bflanders/sudoku_boards/). I wrote a solver for it. 
 
