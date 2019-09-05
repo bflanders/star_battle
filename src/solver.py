@@ -81,20 +81,27 @@ def next_branches(stars, a, b):
             branches.append((stars|pair, b))
     return branches
     
-nums = [num[0] for num in sorted([(k,len(v)) for k,v in pairs.items()], key=lambda it: it[1])]
-nums.append(None)
-order = dict([(nums[i], nums[i+1]) for i in range(10)])
-branches=next_branches(set(),nums[0], nums[1])
-steps = 0
-while branches:
-    stars, a = branches.pop()
-    steps+=1
-    if a==None:
-        if check(stars, smin=2, smax=2):
-            print(f'Solution in {steps:,d} steps:')
-            print_board(board, stars)
-            break
-    else:
-        branches.extend(next_branches(stars, a, order[a]))
-    if steps%1000==0:
-        print(f'{steps:,d}')
+def solve(board, pairs, stop=1):    
+    nums = [num[0] for num in sorted([(k,len(v)) for k,v in pairs.items()], key=lambda it: it[1])]
+    nums.append(None)
+    order = dict([(nums[i], nums[i+1]) for i in range(10)])
+    branches=next_branches(set(),nums[0], nums[1])
+    steps = 0
+    solutions = []
+    while branches:
+        stars, a = branches.pop()
+        steps+=1
+        if a==None:
+            if check(stars, smin=2, smax=2):
+                solutions.append(stars)
+                print(f'Solution in {steps:,d} steps:')
+                steps=0
+                print_board(board, stars)
+                if len(solutions)>=stop:
+                    break
+        else:
+            branches.extend(next_branches(stars, a, order[a]))
+        if steps%1000==0:
+            print(f'{steps:,d}')
+            
+solve(board, pairs, 1)
